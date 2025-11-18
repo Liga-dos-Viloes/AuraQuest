@@ -3,8 +3,7 @@ import { Layout } from './components/Layout';
 import { Login } from './pages/Login';
 import { Questionario } from './pages/Questionario';
 import { NotFound } from './pages/NotFound';
-
-const Dashboard = () => <h1 className="p-8 text-3xl font-bold">Dashboard</h1>;
+import { Dashboard } from './pages/Dashboard';
 
 function App() {
   return (

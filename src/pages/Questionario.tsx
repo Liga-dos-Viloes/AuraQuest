@@ -38,10 +38,20 @@ export function Questionario() {
     setEnviando(true);
     
     try {
-      const idUsuario = 1; 
+      // --- ALTERAÇÃO AQUI ---
+      // Pega o ID que foi salvo no Login
+      const idSalvo = localStorage.getItem('usuarioId');
+      
+      if (!idSalvo) {
+        alert("Sessão expirada. Faça o login novamente.");
+        navigate('/'); // Manda de volta pro login
+        return;
+      }
+      
+      const idUsuario = parseInt(idSalvo); // Converte de string para número
 
       await api.post('/questionario/respostas', {
-        idUsuario: idUsuario,
+        idUsuario: idUsuario, // Usa o ID dinâmico
         idsOpcoes: respostas
       });
 
