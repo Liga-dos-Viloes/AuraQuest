@@ -56,13 +56,8 @@ export function Login() {
 
 
   return (
-    // Container Principal: Centraliza verticalmente e ocupa a altura menos o header
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 md:p-8">
-      
-      {/* Grid: 1 coluna no mobile, 2 colunas no desktop (lg) */}
-      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        {/* Coluna da Esquerda: Texto e Boas-vindas */}
+            <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">        
         <div className="space-y-6 text-center lg:text-left">
           <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
             Bem-vindo! <br />
@@ -77,10 +72,8 @@ export function Login() {
             Sua jornada de requalificação e bem-estar começa agora. 
             Receba missões, ganhe XP e evolua sua carreira.
           </p>
-          {/* Espaço reservado para imagem do celular (opcional) se quiser adicionar depois */}
         </div>
 
-        {/* Coluna da Direita: Formulário */}
         <div className="flex justify-center lg:justify-end">
           <form 
             onSubmit={handleSubmit} 
