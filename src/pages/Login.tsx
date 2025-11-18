@@ -1,48 +1,37 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api/api'; // O nosso cliente Axios
-import { Usuario } from '../types/usuario'; // O tipo que definimos
+import api from '../api/api';
+import { type Usuario } from '../types/usuario';
 import axios from 'axios';
 
-// Baseado na sua imagem da tela de Login
 export function Login() {
-  const navigate = useNavigate(); // Hook para navegar entre páginas
+  const navigate = useNavigate(); 
   const [email, setEmail] = useState('');
   const [nome, setNome] = useState('');
   const [erro, setErro] = useState('');
   
-  // (Opcional) Armazena o usuário logado
-  // const [usuario, setUsuario] = useState<Usuario | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErro(''); // Limpa erros antigos
+    setErro('');
 
     try {
-      // 1. Tenta fazer o Login
       const response = await api.post<Usuario>('/usuarios/login', { email });
       
-      // Se deu certo (200 OK)
       console.log('Login com sucesso!', response.data);
-      // setUsuario(response.data);
-      
-      // Navega para o dashboard
-      // (Vamos criar a rota /dashboard no próximo passo)
       navigate('/dashboard'); 
 
     } catch (error) {
-      // 2. Se o Login falhou (ex: 404 Not Found)
+
       if (axios.isAxiosError(error) && error.response?.status === 404) {
-        
-        // Se o usuário não existe, tenta fazer o Cadastro
-        if (nome) { // Só cadastra se o nome foi preenchido
+   
+        if (nome) { 
           handleCadastro();
         } else {
           setErro('Usuário não encontrado. Preencha seu nome para se cadastrar.');
         }
         
       } else {
-        // Outro erro (ex: 500 Erro de servidor)
         console.error(error);
         setErro('Ocorreu um erro. Tente novamente.');
       }
@@ -51,17 +40,11 @@ export function Login() {
 
   const handleCadastro = async () => {
     try {
-      // Tenta cadastrar
       const response = await api.post<Usuario>('/usuarios', { nome, email });
       console.log('Cadastro com sucesso!', response.data);
-      // setUsuario(response.data);
-      
-      // Navega para o Questionário
-      // (Vamos criar a rota /questionario depois)
       navigate('/questionario'); 
 
     } catch (error) {
-      // 3. Se o Cadastro falhou (ex: 409 E-mail duplicado)
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         setErro('Este e-mail já está em uso. Tente fazer o login.');
       } else {
@@ -73,55 +56,85 @@ export function Login() {
 
 
   return (
-    // Note que usamos `pt-20` (padding-top) para não ficar colado no Header
-    <div className="flex flex-col items-center justify-center pt-20">
+    // Container Principal: Centraliza verticalmente e ocupa a altura menos o header
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 md:p-8">
       
-      {/* O "Bem-vindo" da sua imagem */}
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold mb-4">Bem-vindo!</h1>
-        <h2 className="text-3xl text-gray-300">AuraQuest te espera aqui ;)</h2>
-        <p className="text-lg text-gray-400 mt-4">Sua jornada de hoje começa aqui:</p>
+      {/* Grid: 1 coluna no mobile, 2 colunas no desktop (lg) */}
+      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        {/* Coluna da Esquerda: Texto e Boas-vindas */}
+        <div className="space-y-6 text-center lg:text-left">
+          <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
+            Bem-vindo! <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+              AuraQuest
+            </span>
+          </h1>
+          <h2 className="text-2xl md:text-3xl text-gray-300 font-medium">
+            te espera aqui ;)
+          </h2>
+          <p className="text-lg text-gray-400 max-w-lg mx-auto lg:mx-0">
+            Sua jornada de requalificação e bem-estar começa agora. 
+            Receba missões, ganhe XP e evolua sua carreira.
+          </p>
+          {/* Espaço reservado para imagem do celular (opcional) se quiser adicionar depois */}
+        </div>
+
+        {/* Coluna da Direita: Formulário */}
+        <div className="flex justify-center lg:justify-end">
+          <form 
+            onSubmit={handleSubmit} 
+            className="w-full max-w-md p-8 bg-surface rounded-3xl shadow-2xl border border-gray-800"
+          >
+            <div className="mb-8 text-center lg:text-left">
+              <h3 className="text-xl font-semibold text-white">Acesse sua conta</h3>
+              <p className="text-sm text-gray-500">Preencha seus dados para continuar</p>
+            </div>
+            
+            <div className="mb-5">
+              <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-300">E-mail Corporativo</label>
+              <input 
+                id="email" 
+                type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3.5 rounded-xl bg-black/30 border border-gray-700 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" 
+                placeholder="ex: kaka@fiap.com.br"
+                required
+              />
+            </div>
+            
+            <div className="mb-8">
+              <label htmlFor="nome" className="block mb-2 text-sm font-medium text-gray-300">
+                Como deseja ser chamado? 
+                <span className="text-xs text-gray-500 ml-1">(Apenas para cadastro)</span>
+              </label>
+              <input 
+                id="nome" 
+                type="text" 
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                className="w-full p-3.5 rounded-xl bg-black/30 border border-gray-700 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" 
+                placeholder="Seu nome"
+              />
+            </div>
+
+            {erro && (
+              <div className="p-4 mb-6 text-sm text-red-200 bg-red-500/10 border border-red-500/50 rounded-xl text-center">
+                {erro}
+              </div>
+            )}
+
+            <button 
+              type="submit" 
+              className="w-full bg-primary hover:bg-indigo-600 text-white p-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5"
+            >
+              Iniciar Jornada 🚀
+            </button>
+          </form>
+        </div>
+
       </div>
-
-      {/* O formulário de login */}
-      <form onSubmit={handleSubmit} className="w-full max-w-md p-8 bg-gray-800 rounded-lg shadow-lg">
-        
-        <div className="mb-4">
-          <label htmlFor="email" className="block mb-2 text-gray-300">Coloque seu melhor E-mail</label>
-          <input 
-            id="email" 
-            type="email" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500" 
-            required
-          />
-        </div>
-        
-        <div className="mb-6">
-          <label htmlFor="nome" className="block mb-2 text-gray-300">Como deseja ser chamado? (Preencha para cadastrar)</label>
-          <input 
-            id="nome" 
-            type="text" 
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            className="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500" 
-          />
-        </div>
-
-        {/* Mostra mensagens de erro */}
-        {erro && (
-          <p className="text-red-400 text-center mb-4">{erro}</p>
-        )}
-
-        <button 
-          type="submit" 
-          className="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-lg font-bold text-lg transition-colors"
-        >
-          Ganhar XP's!
-        </button>
-
-      </form>
     </div>
   );
 }

@@ -3,5 +3,4 @@ export interface Trilha {
   titulo: string;
   descricao: string;
   tipo: 'Upskilling' | 'Bem-Estar';
-  skillTag: string | null;
 }
