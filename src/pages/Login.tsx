@@ -122,7 +122,7 @@ export function Login() {
               type="submit" 
               className="w-full bg-primary hover:bg-indigo-600 text-white p-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5"
             >
-              Iniciar Jornada 🚀
+              Ganhar XP's 🚀
             </button>
           </form>
         </div>
