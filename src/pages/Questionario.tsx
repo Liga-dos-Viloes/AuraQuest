@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
 import type { Pergunta } from '../types/questionario';
-import { 
-  ArrowRight, 
-  Check, 
-  Loader2, 
-  Brain, 
-  Code2, 
-  Database, 
-  Leaf, 
-  Monitor, 
-  Zap 
+import {
+  ArrowRight,
+  Check,
+  Loader2,
+  Brain,
+  Code2,
+  Database,
+  Leaf,
+  Monitor,
+  Zap
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -24,7 +24,12 @@ export function Questionario() {
 
   useEffect(() => {
     api.get<Pergunta[]>('/questionario')
-      .then(response => setPerguntas(response.data))
+      .then(response => {
+        const uniqueQuestions = response.data.filter((q, index, self) =>
+          index === self.findIndex(t => t.id === q.id)
+        );
+        setPerguntas(uniqueQuestions);
+      })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
   }, []);
@@ -46,8 +51,8 @@ export function Questionario() {
       if (tipoSelecao === 'SINGLE') {
         return [idOpcao];
       } else {
-        return jaSelecionado 
-          ? prev.filter(id => id !== idOpcao) 
+        return jaSelecionado
+          ? prev.filter(id => id !== idOpcao)
           : [...prev, idOpcao];
       }
     });
@@ -56,15 +61,15 @@ export function Questionario() {
   const handleSubmit = async () => {
     if (respostas.length === 0) return;
     setEnviando(true);
-    
+
     try {
       const idSalvo = localStorage.getItem('usuarioId');
-      
+
       if (!idSalvo) {
         navigate('/');
         return;
       }
-      
+
       await api.post('/questionario/respostas', {
         idUsuario: parseInt(idSalvo),
         idsOpcoes: respostas
@@ -88,7 +93,7 @@ export function Questionario() {
 
   return (
     <div className="min-h-screen bg-background text-white p-6 flex flex-col items-center">
-      
+
       <div className="max-w-6xl w-full space-y-12 pt-10 pb-40"> {/* Adicionado pb-40 para o conteúdo não ficar escondido atrás da barra */}
         <div className="text-center space-y-4">
           <h1 className="text-5xl md:text-7xl font-black tracking-tight">
@@ -101,77 +106,78 @@ export function Questionario() {
 
         <div className="space-y-16">
           {perguntas.map((pergunta) => {
-            
+
             const uniqueOpcoes = pergunta.opcoes.filter((op, index, self) =>
-                index === self.findIndex((t) => t.id === op.id)
+              index === self.findIndex((t) => t.id === op.id || t.textoOpcao === op.textoOpcao)
             );
 
             return (
-            <div key={pergunta.id} className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-200 text-center">
-                {pergunta.texto}
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {uniqueOpcoes.map((opcao) => {
-                  const selecionado = respostas.includes(opcao.id);
-                  return (
-                    <button
-                      key={opcao.id}
-                      onClick={() => toggleOpcao(opcao.id, pergunta.tipoSelecao)}
-                      className={clsx(
-                        "relative h-64 rounded-[2rem] border-2 transition-all duration-300 flex flex-col items-center justify-center gap-6 p-6 group hover:-translate-y-2",
-                        selecionado 
-                          ? "bg-surface border-primary shadow-[0_0_40px_rgba(79,70,229,0.3)]" 
-                          : "bg-surface/30 border-transparent hover:border-gray-700 hover:bg-surface"
-                      )}
-                    >
-                      <div className={clsx(
-                        "p-6 rounded-full bg-black/40 transition-transform duration-300",
-                        selecionado ? "scale-110 ring-2 ring-primary ring-offset-4 ring-offset-black" : "group-hover:scale-110"
-                      )}>
-                        {getIconForOption(opcao.textoOpcao)}
-                      </div>
+              <div key={pergunta.id} className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-200 text-center">
+                  {pergunta.texto}
+                </h3>
 
-                      <span className={clsx(
-                        "font-bold text-xl text-center max-w-[80%]",
-                        selecionado ? "text-white" : "text-gray-400 group-hover:text-gray-200"
-                      )}>
-                        {opcao.textoOpcao}
-                      </span>
-                      
-                      {selecionado && (
-                        <div className="absolute top-4 right-4 bg-primary text-white p-1.5 rounded-full shadow-lg animate-in zoom-in">
-                          <Check size={20} strokeWidth={3} />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {uniqueOpcoes.map((opcao) => {
+                    const selecionado = respostas.includes(opcao.id);
+                    return (
+                      <button
+                        key={opcao.id}
+                        onClick={() => toggleOpcao(opcao.id, pergunta.tipoSelecao)}
+                        className={clsx(
+                          "relative h-64 rounded-[2rem] border-2 transition-all duration-300 flex flex-col items-center justify-center gap-6 p-6 group hover:-translate-y-2",
+                          selecionado
+                            ? "bg-surface border-primary shadow-[0_0_40px_rgba(79,70,229,0.3)]"
+                            : "bg-surface/30 border-transparent hover:border-gray-700 hover:bg-surface"
+                        )}
+                      >
+                        <div className={clsx(
+                          "p-6 rounded-full bg-black/40 transition-transform duration-300",
+                          selecionado ? "scale-110 ring-2 ring-primary ring-offset-4 ring-offset-black" : "group-hover:scale-110"
+                        )}>
+                          {getIconForOption(opcao.textoOpcao)}
                         </div>
-                      )}
-                    </button>
-                  );
-                })}
+
+                        <span className={clsx(
+                          "font-bold text-xl text-center max-w-[80%]",
+                          selecionado ? "text-white" : "text-gray-400 group-hover:text-gray-200"
+                        )}>
+                          {opcao.textoOpcao}
+                        </span>
+
+                        {selecionado && (
+                          <div className="absolute top-4 right-4 bg-primary text-white p-1.5 rounded-full shadow-lg animate-in zoom-in">
+                            <Check size={20} strokeWidth={3} />
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          )})}
+            )
+          })}
         </div>
       </div>
 
       <div className="fixed bottom-0 left-0 w-full bg-[#0a0b14]/80 backdrop-blur-xl border-t border-white/5 p-6 z-50 flex justify-center shadow-2xl">
         <div className="flex flex-col items-center gap-3 w-full max-w-md">
-            <button
-              onClick={handleSubmit}
-              disabled={respostas.length === 0 || enviando}
-              className={clsx(
-                "w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-lg",
-                respostas.length > 0 
-                  ? "bg-white text-black hover:scale-[1.02] hover:shadow-white/20" 
-                  : "bg-gray-800 text-gray-500 cursor-not-allowed"
-              )}
-            >
-              {enviando ? <Loader2 className="animate-spin" /> : <>Continuar <ArrowRight strokeWidth={3} /></>}
-            </button>
-            
-            <button onClick={() => navigate('/dashboard')} className="text-gray-500 hover:text-white text-sm font-medium transition-colors py-2">
-              Pular esta etapa
-            </button>
+          <button
+            onClick={handleSubmit}
+            disabled={respostas.length === 0 || enviando}
+            className={clsx(
+              "w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-lg",
+              respostas.length > 0
+                ? "bg-white text-black hover:scale-[1.02] hover:shadow-white/20"
+                : "bg-gray-800 text-gray-500 cursor-not-allowed"
+            )}
+          >
+            {enviando ? <Loader2 className="animate-spin" /> : <>Continuar <ArrowRight strokeWidth={3} /></>}
+          </button>
+
+          <button onClick={() => navigate('/dashboard')} className="text-gray-500 hover:text-white text-sm font-medium transition-colors py-2">
+            Pular esta etapa
+          </button>
         </div>
       </div>
 
