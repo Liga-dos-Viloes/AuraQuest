@@ -4,8 +4,8 @@ import { Login } from './pages/Login';
 import { Questionario } from './pages/Questionario';
 import { NotFound } from './pages/NotFound';
 import { Dashboard } from './pages/Dashboard';
-import { Premium } from './pages/Premium'; // <--- Importe aqui
-// import { Admin } from './pages/admin';
+import { Premium } from './pages/Premium'; 
+// import { Admin } from './pages/Admin';
 
 function App() {
   return (
@@ -19,7 +19,6 @@ function App() {
           <Route path="/premium" element={<Premium />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-        {/* <Route path="/admin" element={<Admin />} /> */}
       </Routes>
     </BrowserRouter>
   )
