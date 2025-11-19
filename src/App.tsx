@@ -5,7 +5,6 @@ import { Questionario } from './pages/Questionario';
 import { NotFound } from './pages/NotFound';
 import { Dashboard } from './pages/Dashboard';
 import { Premium } from './pages/Premium'; 
-// import { Admin } from './pages/Admin';
 
 function App() {
   return (

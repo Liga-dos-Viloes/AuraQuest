@@ -35,9 +35,17 @@ export function Dashboard() {
         ]);
         
         setUsuario(userRes.data);
-        setTrilhas(trilhasRes.data);
 
-        const ranking = allUsersRes.data
+        const uniqueTrilhas = trilhasRes.data.filter((trilha, index, self) => 
+            index === self.findIndex((t) => t.id === trilha.id)
+        );
+        setTrilhas(uniqueTrilhas);
+
+        const uniqueUsers = allUsersRes.data.filter((user, index, self) => 
+            index === self.findIndex((u) => u.id === user.id)
+        );
+
+        const ranking = uniqueUsers
           .sort((a, b) => b.pontosXp - a.pontosXp)
           .slice(0, 5);
         setUsersLeaderboard(ranking);
@@ -79,11 +87,11 @@ export function Dashboard() {
     <div className="space-y-12 pb-20 relative"> 
       
       {showPaywall && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#0a0b14]/95 backdrop-blur-md animate-in fade-in duration-300 w-screen h-screen overflow-hidden">
           <div className="bg-surface border border-primary/50 p-8 rounded-3xl max-w-lg w-full text-center relative overflow-hidden shadow-2xl shadow-purple-500/20">
             <button 
               onClick={() => setShowPaywall(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-50"
             >
               <X size={24} />
             </button>
@@ -105,11 +113,11 @@ export function Dashboard() {
             
             <div className="grid gap-4">
                <button 
-  onClick={() => navigate('/premium')}
-  className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-xl shadow-primary/20 hover:scale-[1.02] flex items-center justify-center gap-2"
->
-  <Lock size={20} /> Assinar Premium (R$ 19,90/mês)
-</button>
+                 onClick={() => navigate('/premium')}
+                 className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-xl shadow-primary/20 hover:scale-[1.02] flex items-center justify-center gap-2"
+               >
+                 <Lock size={20} /> Assinar Premium (R$ 19,90/mês)
+               </button>
                <button 
                  onClick={() => setShowPaywall(false)}
                  className="text-gray-500 hover:text-white text-sm underline decoration-gray-700 underline-offset-4 hover:decoration-white transition-all"
