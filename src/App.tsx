@@ -12,11 +12,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Login />} />
           <Route path="/login" element={<Login />} />
-          
-          {/* Adicione a rota aqui */}
           <Route path="/questionario" element={<Questionario />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
