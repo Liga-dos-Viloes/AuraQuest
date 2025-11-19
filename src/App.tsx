@@ -3,8 +3,8 @@ import { Layout } from './components/Layout';
 import { Login } from './pages/Login';
 import { Questionario } from './pages/Questionario';
 import { NotFound } from './pages/NotFound';
-
-const Dashboard = () => <h1 className="p-8 text-3xl font-bold">Dashboard</h1>;
+import { Dashboard } from './pages/Dashboard';
+import { Premium } from './pages/Premium'; 
 
 function App() {
   return (
@@ -13,11 +13,9 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Login />} />
           <Route path="/login" element={<Login />} />
-          
-          {/* Adicione a rota aqui */}
           <Route path="/questionario" element={<Questionario />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          
+          <Route path="/premium" element={<Premium />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

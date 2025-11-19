@@ -17,6 +17,7 @@ export function Login() {
 
     try {
       const response = await api.post<Usuario>('/usuarios/login', { email });
+      localStorage.setItem('usuarioId', response.data.id.toString());
       
       console.log('Login com sucesso!', response.data);
       navigate('/dashboard'); 
@@ -41,6 +42,8 @@ export function Login() {
   const handleCadastro = async () => {
     try {
       const response = await api.post<Usuario>('/usuarios', { nome, email });
+      localStorage.setItem('usuarioId', response.data.id.toString());
+
       console.log('Cadastro com sucesso!', response.data);
       navigate('/questionario'); 
 

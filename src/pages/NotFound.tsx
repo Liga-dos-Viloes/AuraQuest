@@ -1,19 +1,38 @@
 import { Link } from 'react-router-dom';
+import { Home, Ghost } from 'lucide-react';
 
 export function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-      <h1 className="text-9xl font-bold text-blue-500">404</h1>
-      <h2 className="text-4xl font-semibold mt-4 mb-2">Página Não Encontrada</h2>
-      <p className="text-lg text-gray-400 mb-8">
-        Desculpe, a página que você está procurando não existe.
-      </p>
-      <Link 
-        to="/" 
-        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-bold transition-colors"
-      >
-        Voltar para o Início
-      </Link>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#0a0b14] text-white px-6 text-center relative overflow-hidden">
+      
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <div className="relative z-10">
+        <div className="mb-8 animate-bounce">
+            <Ghost size={80} className="text-primary mx-auto opacity-80" />
+        </div>
+        
+        <h1 className="text-9xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 mb-4">
+          404
+        </h1>
+        
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          Perdido no Espaço?
+        </h2>
+        
+        <p className="text-gray-400 text-lg mb-10 max-w-md mx-auto">
+          A página que você procura não existe ou foi movida para outra dimensão.
+        </p>
+        
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-indigo-600 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/25 hover:scale-105"
+        >
+          <Home size={20} />
+          Voltar para o Início
+        </Link>
+      </div>
+
     </div>
   );
 }
