@@ -1,28 +1,29 @@
 import { useState } from 'react';
-import { ArrowRight, Zap, Heart, CheckCircle, Lock, Loader2 } from 'lucide-react';
+import { ArrowRight, Zap, Heart, CheckCircle, Loader2 } from 'lucide-react';
 import clsx from 'clsx';
 import type { Trilha } from '../types/trilhas';
 import api from '../api/api';
 
 interface TrilhaCardProps {
   trilha: Trilha;
-  onComplete: (pontos: number) => void; 
+  onComplete: (pontos: number) => void;
   bloqueado?: boolean;
 }
 
-export function TrilhaCard({ trilha, onComplete, bloqueado = false }: TrilhaCardProps) {
+export function TrilhaCard({ trilha, onComplete, bloqueado = false }: TrilhaCardProps) { 
   const isBemEstar = trilha.tipo === 'Bem-Estar';
   const [status, setStatus] = useState<'INICIAR' | 'EM_ANDAMENTO' | 'CONCLUIDO'>('INICIAR');
   const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
-    if (bloqueado) return;
+    if (bloqueado && status === 'EM_ANDAMENTO') {
+      onComplete(0); 
+      return;
+    }
 
     if (status === 'INICIAR') {
-      // Simula início
       setStatus('EM_ANDAMENTO');
     } else if (status === 'EM_ANDAMENTO') {
-      // Concluir e ganhar pontos
       setLoading(true);
       try {
         const idUsuario = localStorage.getItem('usuarioId');
@@ -43,19 +44,9 @@ export function TrilhaCard({ trilha, onComplete, bloqueado = false }: TrilhaCard
   return (
     <div className={clsx(
       "bg-surface p-6 rounded-3xl border flex flex-col justify-between transition-all duration-300 h-full group relative overflow-hidden",
-      bloqueado ? "border-red-500/30 opacity-75" : "border-gray-800 hover:border-primary/50 hover:-translate-y-1"
+      (bloqueado && status === 'EM_ANDAMENTO') ? "border-red-500/30" : "border-gray-800 hover:border-primary/50 hover:-translate-y-1"
     )}>
-      
-      {bloqueado && (
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] z-10 flex flex-col items-center justify-center text-center p-4">
-          <Lock className="text-red-400 mb-2" size={32} />
-          <p className="font-bold text-white">Limite Diário Atingido</p>
-          <p className="text-xs text-gray-300 mt-1">Assine o Premium para desbloquear missões ilimitadas.</p>
-          <button className="mt-3 bg-red-500 hover:bg-red-600 text-white text-xs font-bold py-2 px-4 rounded-full transition-colors">
-            Virar Premium
-          </button>
-        </div>
-      )}
+
 
       <div>
         <div className="flex justify-between items-start mb-6">
@@ -80,20 +71,24 @@ export function TrilhaCard({ trilha, onComplete, bloqueado = false }: TrilhaCard
 
       <button 
         onClick={handleClick}
-        disabled={status === 'CONCLUIDO' || bloqueado || loading}
+        disabled={status === 'CONCLUIDO' || loading}
         className={clsx(
           "mt-8 w-full font-semibold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2",
           status === 'CONCLUIDO' 
             ? "bg-green-500/20 text-green-400 cursor-default"
             : status === 'EM_ANDAMENTO'
-            ? "bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30"
+            ? (bloqueado ? "bg-red-500/20 text-red-400 hover:bg-red-500/30" : "bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30")
             : "bg-white/5 text-white hover:bg-primary"
         )}
       >
         {loading ? <Loader2 className="animate-spin" /> : (
           <>
             {status === 'INICIAR' && <>Iniciar Quest <ArrowRight size={18} /></>}
-            {status === 'EM_ANDAMENTO' && <>Concluir (+100 XP)</>}
+            
+            {status === 'EM_ANDAMENTO' && (
+               bloqueado ? <>Bloqueado (Clique) <CheckCircle size={18} /></> : <>Concluir (+100 XP)</>
+            )}
+
             {status === 'CONCLUIDO' && <>Concluída <CheckCircle size={18} /></>}
           </>
         )}

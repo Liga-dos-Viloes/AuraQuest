@@ -104,9 +104,12 @@ export function Dashboard() {
             </p>
             
             <div className="grid gap-4">
-               <button className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-xl shadow-primary/20 hover:scale-[1.02] flex items-center justify-center gap-2">
-                 <Lock size={20} /> Assinar Premium (R$ 19,90/mês)
-               </button>
+               <button 
+  onClick={() => navigate('/premium')}
+  className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-xl shadow-primary/20 hover:scale-[1.02] flex items-center justify-center gap-2"
+>
+  <Lock size={20} /> Assinar Premium (R$ 19,90/mês)
+</button>
                <button 
                  onClick={() => setShowPaywall(false)}
                  className="text-gray-500 hover:text-white text-sm underline decoration-gray-700 underline-offset-4 hover:decoration-white transition-all"
