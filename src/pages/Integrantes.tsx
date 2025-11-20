@@ -1,4 +1,4 @@
-import { Github, Linkedin, Code2, Terminal, LayoutTemplate, Users } from 'lucide-react';
+import { Github, Linkedin, Code2, Terminal, LayoutTemplate, Users, CodeIcon } from 'lucide-react';
 
 interface Member {
   nome: string;
@@ -14,7 +14,7 @@ const squadData: Member[] = [
   {
     nome: "Leandro Guarido de Oliveira",
     rm: "RM561760",
-    funcao: "Full Stack Developer",
+    funcao: "Backend Developer",
     icon: Code2,
     cor: "text-blue-400",
     github: "https://github.com/LeandroGuaridoOliveira",
@@ -23,7 +23,7 @@ const squadData: Member[] = [
   {
     nome: "Gabriel Costa Solano",
     rm: "RM562325",
-    funcao: "Frontend Architect",
+    funcao: "Apoio Moral e Técnico",
     icon: LayoutTemplate,
     cor: "text-purple-400",
     github: "https://github.com/GabSolano",
@@ -32,12 +32,21 @@ const squadData: Member[] = [
   {
     nome: "Kaiky Pereira da Silva",
     rm: "RM00000",
-    funcao: "Backend Engineer",
+    funcao: "Genesys Cloud Developer",
     icon: Terminal,
     cor: "text-green-400",
     github: "https://github.com/rodrigueszkkk",
     linkedin: "https://www.linkedin.com/in/kaikypereira/"
+  },
+  { nome: "Leandro Cavallari Silva",
+    rm: "Professor",
+    funcao: "Full Stack Developer",
+    icon: CodeIcon,
+    cor: "text-green-400",
+    github: "https://github.com/Leandroyyy",
+    linkedin: "https://www.linkedin.com/in/leandro-cavallari/?locale=pt"
   }
+
 ];
 
 export function Integrantes() {
