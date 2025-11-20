@@ -11,7 +11,7 @@ export function Layout() {
           <Link to="/integrantes" className="text-gray-400 hover:text-white">
             Integrantes
           </Link>
-          <Link to="/sobre" className="text-gray-400 hover:text-white">
+          <Link to="/Sobre" className="text-gray-400 hover:text-white">
             Sobre
           </Link>
           <Link to="/faq" className="text-gray-400 hover:text-white">
