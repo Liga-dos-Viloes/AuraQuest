@@ -44,7 +44,7 @@ export function FAQ() {
   return (
     <div className="min-h-screen pb-20 pt-10 px-4 flex flex-col items-center relative overflow-hidden">
       
-      {/* Elementos de fundo decorativos (mesmo estilo do Dashboard) */}
+      {}
       <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
       <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none"></div>
 
