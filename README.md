@@ -1,13 +1,15 @@
 
-
 # AuraQuest 🚀
 
 > **Global Solution 2025 - FIAP**
 > *O Futuro do Desenvolvimento Humano: Upskilling e Bem-Estar.*
 
-🔗 Acesse a Aplicação Online: https://auraquest.vercel.app/
+🔗 **Acesse a Aplicação Online:** [https://auraquest.vercel.app/](https://auraquest.vercel.app/)
+
+---
 
 ## 📋 Sumário
+
 1. [Sobre o Projeto](#-sobre-o-projeto)
 2. [Tecnologias Utilizadas](#%EF%B8%8F-tecnologias-utilizadas)
 3. [Instalação](#-instalação)
@@ -22,65 +24,78 @@
 ---
 
 ## 📖 Sobre o Projeto
-O **AuraQuest** é uma plataforma gamificada desenvolvida para combater o *burnout* e a estagnação profissional. A aplicação une o desenvolvimento técnico (**Upskilling**) com o monitoramento de saúde mental (**Bem-Estar**). 
 
-Através de um sistema de RPG, o usuário completa trilhas de aprendizado e registra seu humor diário para ganhar XP, subir de nível e desbloquear conquistas, tudo isso enquanto recebe recomendações personalizadas (simuladas via IA) para sua carreira.
+O **AuraQuest** é uma plataforma gamificada desenvolvida para combater *burnout* e estagnação profissional, unindo **Upskilling** (desenvolvimento técnico) com **Bem-Estar** (monitoramento emocional).
+
+Com elementos de RPG, o usuário completa trilhas de estudo, realiza check-ins de humor e evolui seu personagem através de XP, níveis, conquistas e ranking global.
+
+Além disso, a aplicação oferece recomendações personalizadas (simuladas por IA) baseadas no perfil do usuário.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
-O projeto foi desenvolvido utilizando as seguintes tecnologias modernas:
 
-* **Frontend:** [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
-* **Linguagem:** [TypeScript](https://www.typescriptlang.org/)
-* **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
-* **Roteamento:** [React Router DOM](https://reactrouter.com/)
-* **Ícones:** [Lucide React](https://lucide.dev/)
-* **Consumo de API:** [Axios](https://axios-http.com/)
+* **Frontend:** React + Vite
+* **Linguagem:** TypeScript
+* **Estilização:** Tailwind CSS
+* **Roteamento:** React Router DOM
+* **Ícones:** Lucide React
+* **Consumo de API:** Axios
 
 ---
 
 ## 📦 Instalação
 
-Siga os passos abaixo para rodar o projeto localmente:
+### **Pré-requisitos**
 
-### Pré-requisitos
-* Node.js (v16 ou superior)
+* Node.js (v16+)
 * NPM ou Yarn
 
-### Passo a passo
-1.  **Clone o repositório:**
-    ```bash
-    git clone https://github.com/Liga-dos-Viloes/AuraQuest.git
-    cd auraquest
-    ```
+### **Passo a passo**
 
-2.  **Instale as dependências:**
-    ```bash
-    npm install
-    ```
+1. **Clone o repositório:**
 
-3.  **Execute o projeto:**
-    ```bash
-    npm run dev
-    ```
+   ```bash
+   git clone https://github.com/Liga-dos-Viloes/AuraQuest.git
+   cd auraquest
+   ```
 
-4.  **Acesse no navegador:**
-    Abra `http://localhost:5173` (ou a porta indicada no terminal).
+2. **Instale as dependências:**
 
-> **Nota:** A API já está configurada para apontar para o servidor de produção em `src/api/api.ts`, não sendo necessária configuração adicional de backend para testar o frontend.
+   ```bash
+   npm install
+   ```
+
+3. **Execute o projeto:**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Acesse no navegador:**
+   [http://localhost:5173](http://localhost:5173)
+
+> 💡 A API já está configurada no arquivo `src/api/api.ts` para o servidor de produção, não sendo necessário configurar backend local.
 
 ---
 
 ## 🚀 Como Usar
 
-1.  **Login/Cadastro:** Acesse a tela inicial. Digite um e-mail corporativo. Se o usuário não existir, o sistema pedirá seu nome para cadastro automático.
-2.  **Onboarding:** Responda ao questionário inicial para definir seu perfil (ex: Backend, Frontend, IA).
-3.  **Dashboard:**
-    * Visualize seu nível, XP e Ranking Global.
-    * Realize o check-in diário de humor clicando nos emojis.
-    * Inicie trilhas de aprendizado (Upskilling ou Bem-Estar) para ganhar +100 XP por missão.
-4.  **Premium:** Tente exceder o limite de 3 missões diárias para visualizar a simulação do paywall e a página de planos.
+1. **Login/Cadastro:**
+   Utilize um e-mail corporativo. Caso não exista, o sistema realiza cadastro automático após informar o nome.
+
+2. **Onboarding:**
+   Preencha o questionário inicial para definir trilhas e recomendações personalizadas.
+
+3. **Dashboard:**
+
+   * Acompanhe nível, XP e posição no ranking
+   * Registre o humor diário
+   * Veja suas trilhas e missões
+   * Complete missões para ganhar **+100 XP**
+
+4. **Premium:**
+   Após 3 missões/dia, o usuário visualiza o *paywall* simulando o modelo Freemium.
 
 ---
 
@@ -88,87 +103,90 @@ Siga os passos abaixo para rodar o projeto localmente:
 
 ```text
 src/
-├── api/            # Configuração do Axios (api.ts)
-├── components/     # Componentes reutilizáveis (Layout, TrilhaCard, Emoji, etc.)
-├── pages/          # Páginas da aplicação
-│   ├── Dashboard   # Painel principal gamificado
-│   ├── Login       # Autenticação e cadastro
-│   ├── Premium     # Página de planos de assinatura
-│   ├── Questionario# Onboarding do usuário
-│   ├── Sobre       # Informações institucionais
-│   └── ...         # Outras páginas (FAQ, Integrantes, NotFound)
-├── types/          # Interfaces TypeScript (Usuario, Trilha, Missao, etc.)
-├── App.tsx         # Configuração de Rotas
-└── main.tsx        # Ponto de entrada
-````
+├── api/              # Configuração do Axios (api.ts)
+├── components/       # Componentes reutilizáveis
+├── pages/            # Páginas principais
+│   ├── Dashboard
+│   ├── Login
+│   ├── Premium
+│   ├── Questionario
+│   ├── Sobre
+│   └── Integrantes
+├── types/            # Tipos e interfaces TypeScript
+├── App.tsx           # Configuração de rotas
+└── main.tsx          # Ponto de entrada
+```
 
------
+---
 
 ## 🔗 Endpoints e Rotas Principais
 
-### Rotas da Aplicação (Frontend)
+### **Rotas Frontend**
 
-  * `/`: Login
-  * `/dashboard`: Painel principal do usuário
-  * `/questionario`: Onboarding inicial
-  * `/premium`: Página de assinatura
-  * `/integrantes`: Página da equipe
-  * `/sobre`: Sobre o projeto
+| Rota            | Descrição          |
+| --------------- | ------------------ |
+| `/`             | Login              |
+| `/dashboard`    | Painel gamificado  |
+| `/questionario` | Onboarding         |
+| `/premium`      | Assinatura Premium |
+| `/integrantes`  | Equipe             |
+| `/sobre`        | Sobre o projeto    |
 
-### Integração com API (Backend)
+### **Endpoints API (Backend)**
 
-Principais endpoints consumidos pelo Axios em `src/api/api.ts`:
+| Método | Endpoint            | Função          |
+| ------ | ------------------- | --------------- |
+| `POST` | `/usuarios/login`   | Login           |
+| `POST` | `/usuarios`         | Cadastro        |
+| `GET`  | `/trilhas`          | Listar trilhas  |
+| `POST` | `/diarios`          | Registrar humor |
+| `PUT`  | `/usuarios/{id}/xp` | Atualizar XP    |
 
-  * `POST /usuarios/login`: Autenticação de usuário.
-  * `POST /usuarios`: Cadastro de novo usuário.
-  * `GET /trilhas`: Busca as trilhas disponíveis.
-  * `POST /diarios`: Salva o registro de humor (Emoji).
-  * `PUT /usuarios/{id}/xp`: Atualiza o XP do usuário ao completar missões.
-
------
+---
 
 ## 👥 Autores e Créditos
 
-Trabalho desenvolvido pela equipe **AuraQuest** para a Global Solution da FIAP:
+| Nome                            | RM        | Função                  | GitHub                                                                                 |
+| ------------------------------- | --------- | ----------------------- | -------------------------------------------------------------------------------------- |
+| **Leandro Guarido de Oliveira** | RM561760  | Backend Developer       | [https://github.com/LeandroGuaridoOliveira](https://github.com/LeandroGuaridoOliveira) |
+| **Gabriel Costa Solano**        | RM562325  | Apoio Moral e Técnico   | [https://github.com/GabSolano](https://github.com/GabSolano)                           |
+| **Kaiky Pereira da Silva**      | RM564578  | Genesys Cloud Developer | [https://github.com/rodrigueszkkk](https://github.com/rodrigueszkkk)                   |
+| **Leandro Cavallari Silva**     | Professor | Full Stack Developer    | [https://github.com/Leandroyyy](https://github.com/Leandroyyy)                         |
 
-| Nome | RM | Função | Links |
-|------|----|--------|-------|
-| **Leandro Guarido de Oliveira** | RM561760 | Backend Developer | [GitHub](https://github.com/LeandroGuaridoOliveira) |
-| **Gabriel Costa Solano** | RM562325 | Apoio Moral e Técnico | [GitHub](https://github.com/GabSolano) |
-| **Kaiky Pereira da Silva** | RM564578 | Genesys Cloud Developer | [GitHub](https://github.com/rodrigueszkkk) |
-| **Leandro Cavallari Silva** | Professor | Full Stack Developer | [GitHub](https://github.com/Leandroyyy) |
-
------
+---
 
 ## 📸 Screenshots / Demonstração
 
-### Tela de Dashboard
+### **Dashboard**
 
+<img src="https://github.com/user-attachments/assets/a603c8f8-d95e-4703-941d-ca795625c1c8" width="100%" />
 
-<img width="1858" height="916" alt="Dashboard" src="https://github.com/user-attachments/assets/a603c8f8-d95e-4703-941d-ca795625c1c8" />
+### **Tela Premium**
 
-### Tela Premium
+<img src="https://github.com/user-attachments/assets/f58d7ef0-776b-4646-a5db-1fd6f73cd2fa" width="100%" />
+<img src="https://github.com/user-attachments/assets/e12e22e2-8877-4ba0-851d-c6411e9f894a" width="100%" />
 
-
-<img width="1862" height="872" alt="premiujm" src="https://github.com/user-attachments/assets/f58d7ef0-776b-4646-a5db-1fd6f73cd2fa" />
-<img width="1853" height="869" alt="prem" src="https://github.com/user-attachments/assets/e12e22e2-8877-4ba0-851d-c6411e9f894a" />
-
-
------
+---
 
 ## 🔗 Links
 
-Abaixo estão os links obrigatórios para avaliação:
+### 🐱 **Repositório GitHub:**
 
-  * ### 🐱 **GITHUB (Repositório do Projeto):**
+[https://github.com/Liga-dos-Viloes/AuraQuest.git](https://github.com/Liga-dos-Viloes/AuraQuest.git)
 
-      * **https://github.com/Liga-dos-Viloes/AuraQuest.git**
+### 🎬 **Vídeo Pitch/Demo:**
 
-  * ### 📺 **YOUTUBE (Vídeo Pitch/Demo):**
+[https://youtu.be/pXz1tX0V4MM](https://youtu.be/pXz1tX0V4MM)
 
-      * **[CLIQUE AQUI PARA ASSISTIR AO VÍDEO](https://youtu.be/pXz1tX0V4MM)**
+### 🌐 **Deploy Frontend (Vercel):**
 
-<!-- end list -->
+[https://auraquest.vercel.app/](https://auraquest.vercel.app/)
 
-```
-```
+---
+
+## 📞 Contato
+
+Se quiser entrar em contato com a equipe ou relatar algum problema, utilize o repositório no GitHub ou abra uma *issue*.
+
+---
+
