@@ -98,8 +98,3 @@ src/
 
 ---
 
-## 📄 Licença
-
-Projeto acadêmico desenvolvido para a **Global Solution 2025 - FIAP**.
-Todos os direitos reservados à equipa e à instituição.
-
