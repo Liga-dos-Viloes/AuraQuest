@@ -1,5 +1,5 @@
 
-````markdown
+
 # AuraQuest 🚀
 
 > **Global Solution 2025 - FIAP**
