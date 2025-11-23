@@ -1,73 +1,105 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# AuraQuest 🚀
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 **Acesse a Aplicação Online:** [https://auraquest.vercel.app/](https://auraquest.vercel.app/)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📋 Sobre o Projeto
 
-## Expanding the ESLint configuration
+O **AuraQuest** é uma plataforma inovadora e gamificada criada para combater o *burnout* e a estagnação profissional no setor tecnológico. A aplicação combina **Upskilling** (desenvolvimento de competências técnicas) com **Bem-Estar** (monitorização emocional), transformando a jornada profissional em uma experiência envolvente no estilo **RPG**.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+O sistema incentiva os utilizadores a completarem missões de estudo e check-ins de humor para ganhar XP, subir de nível e competir em um ranking global.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ✨ Funcionalidades Principais
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* **Gamificação Completa:** Sistema de XP, níveis, barra de progresso e *Leaderboard* global.
+* **Trilhas de Aprendizagem:** Missões focadas em tecnologia (Java, React, IA) e Soft Skills/Bem-Estar.
+* **Diário de Bem-Estar:** Monitorização diária do humor com emojis e feedback privado.
+* **Onboarding Personalizado:** Questionário inicial que define o perfil e interesses do utilizador.
+* **Sistema de Contas:** Login via email corporativo e auto-registo.
+* **Modelo Freemium:** Limitação de missões para contas gratuitas e apresentação de planos Premium.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+* **React (Vite)** — Interface rápida e modular
+* **TypeScript** — Tipagem estática para segurança
+* **Tailwind CSS** — Estilização com utilitários
+* **Lucide React** — Ícones leves
+* **Axios** — Consumo da API
+* **React Router DOM** — Navegação SPA
+
+---
+
+## 🚀 Como Executar o Projeto Localmente
+
+### **Pré-requisitos**
+
+* Node.js 16+
+* npm ou yarn
+
+### **Instalação**
+
+1. **Clonar o repositório**
+
+   ```bash
+   git clone https://github.com/seu-usuario/auraquest.git
+   cd auraquest
+   ```
+
+2. **Instalar dependências**
+
+   ```bash
+   npm install
+   ```
+
+3. **Configurar ambiente**
+   A URL da API já está definida em `src/api/api.ts` (produção: `https://auraquestapi-fiapdb.onrender.com`).
+
+4. **Executar**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Acessar**
+   Abra o navegador:
+   `http://localhost:5173`
+
+---
+
+## 📂 Estrutura do Projeto
+
+```text
+src/
+├── api/            # Configuração do Axios e endpoints
+├── components/     # Componentes reutilizáveis
+├── pages/          # Páginas principais da aplicação
+├── types/          # Tipos e interfaces em TypeScript
+├── App.tsx         # Gerenciamento de Rotas
+└── main.tsx        # Ponto de entrada
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 👥 Equipa de Desenvolvimento (Squad)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Nome                            | RM        | Função                  |
+| ------------------------------- | --------- | ----------------------- |
+| **Leandro Guarido de Oliveira** | RM561760  | Backend Developer       |
+| **Gabriel Costa Solano**        | RM562325  | Apoio Moral e Técnico   |
+| **Kaiky Pereira da Silva**      | RM00000   | Genesys Cloud Developer |
+| **Leandro Cavallari Silva**     | Professor | Full Stack Developer    |
+
+---
+
+## 📄 Licença
+
+Projeto acadêmico desenvolvido para a **Global Solution 2025 - FIAP**.
+Todos os direitos reservados à equipa e à instituição.
+
