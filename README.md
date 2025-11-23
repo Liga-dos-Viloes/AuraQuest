@@ -176,7 +176,7 @@ src/
 
 ### 🎬 **Vídeo Pitch/Demo:**
 
-[https://youtu.be/pXz1tX0V4MM](https://youtu.be/pXz1tX0V4MM)
+[https://youtu.be/pXz1tX0V4MM](https://youtu.be/cPoUkEekmmY)
 
 ### 🌐 **Deploy Frontend (Vercel):**
 
