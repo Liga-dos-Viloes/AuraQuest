@@ -93,7 +93,7 @@ src/
 | ------------------------------- | --------- | ----------------------- |
 | **Leandro Guarido de Oliveira** | RM561760  | Backend Developer       |
 | **Gabriel Costa Solano**        | RM562325  | Apoio Moral e Técnico   |
-| **Kaiky Pereira da Silva**      | RM00000   | Genesys Cloud Developer |
+| **Kaiky Pereira da Silva**      | RM564578   | Genesys Cloud Developer |
 | **Leandro Cavallari Silva**     | Professor | Full Stack Developer    |
 
 ---
