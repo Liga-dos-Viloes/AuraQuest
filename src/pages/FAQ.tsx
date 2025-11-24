@@ -43,24 +43,24 @@ export function FAQ() {
 
   return (
     <div className="min-h-screen pb-20 pt-10 px-4 flex flex-col items-center relative overflow-hidden">
-      
-      {}
+
+      { }
       <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
       <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="relative z-10 max-w-4xl w-full space-y-12">
-        
+
         <div className="text-center space-y-6">
-          <div className="inline-flex items-center justify-center p-4 bg-surface rounded-full border border-gray-800 shadow-xl mb-4">
+          <div className="inline-flex items-center justify-center p-4 bg-surface rounded-full border border-border shadow-xl mb-4">
             <MessageCircleQuestion size={40} className="text-primary" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-black text-foreground tracking-tight">
             Perguntas <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">
               Frequentes
             </span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Tire suas dúvidas sobre a jornada AuraQuest e aproveite ao máximo sua experiência.
           </p>
         </div>
@@ -69,11 +69,11 @@ export function FAQ() {
           {faqData.map((item, index) => {
             const isOpen = openIndex === index;
             return (
-              <div 
+              <div
                 key={index}
                 className={clsx(
                   "bg-surface rounded-2xl border transition-all duration-300 overflow-hidden",
-                  isOpen ? "border-primary/50 shadow-[0_0_30px_rgba(79,70,229,0.15)]" : "border-gray-800 hover:border-gray-700"
+                  isOpen ? "border-primary/50 shadow-[0_0_30px_rgba(79,70,229,0.15)]" : "border-border hover:border-gray-700"
                 )}
               >
                 <button
@@ -81,25 +81,25 @@ export function FAQ() {
                   className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
                 >
                   <div className="flex items-center gap-4">
-                    <HelpCircle size={24} className={clsx("transition-colors", isOpen ? "text-primary" : "text-gray-600")} />
-                    <span className={clsx("text-lg font-bold transition-colors", isOpen ? "text-white" : "text-gray-300")}>
+                    <HelpCircle size={24} className={clsx("transition-colors", isOpen ? "text-primary" : "text-muted-foreground")} />
+                    <span className={clsx("text-lg font-bold transition-colors", isOpen ? "text-foreground" : "text-muted-foreground")}>
                       {item.pergunta}
                     </span>
                   </div>
                   {isOpen ? (
                     <ChevronUp className="text-primary" />
                   ) : (
-                    <ChevronDown className="text-gray-500" />
+                    <ChevronDown className="text-muted-foreground" />
                   )}
                 </button>
-                
-                <div 
+
+                <div
                   className={clsx(
-                    "px-6 text-gray-400 leading-relaxed overflow-hidden transition-all duration-300 ease-in-out",
+                    "px-6 text-muted-foreground leading-relaxed overflow-hidden transition-all duration-300 ease-in-out",
                     isOpen ? "max-h-96 pb-6 opacity-100" : "max-h-0 pb-0 opacity-0"
                   )}
                 >
-                  <div className="pl-10 border-l-2 border-gray-800">
+                  <div className="pl-10 border-l-2 border-border">
                     {item.resposta}
                   </div>
                 </div>
@@ -109,7 +109,7 @@ export function FAQ() {
         </div>
 
         <div className="text-center pt-12">
-          <p className="text-gray-500">
+          <p className="text-muted-foreground">
             Ainda tem dúvidas? <a href="#" className="text-primary hover:text-purple-400 font-bold transition-colors">Entre em contato com o suporte</a>
           </p>
         </div>
