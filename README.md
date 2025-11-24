@@ -4,7 +4,7 @@
 > **Global Solution 2025 - FIAP**
 > *O Futuro do Desenvolvimento Humano: Upskilling e Bem-Estar.*
 
-🔗 **Acesse a Aplicação Online:** [https://auraquest.vercel.app/](https://auraquest.vercel.app/)
+🔗 **Acesse a Aplicação Online:** [Vercel](https://aura-quest.vercel.app/)
 
 ---
 
