@@ -180,7 +180,7 @@ src/
 
 ### 🌐 **Deploy Frontend (Vercel):**
 
-[https://auraquest.vercel.app/](https://auraquest.vercel.app/)
+[Vercel](https://aura-quest.vercel.app/)
 
 ---
 
