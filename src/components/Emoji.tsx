@@ -30,11 +30,11 @@ export function EmojiRating() {
   };
 
   return (
-    <div className="bg-surface p-8 rounded-3xl border border-gray-800 relative overflow-hidden">
+    <div className="bg-surface p-8 rounded-3xl border border-border relative overflow-hidden">
       <div className="relative z-10">
-        <h3 className="text-xl font-bold mb-2 text-white">Diário de Bem-Estar</h3>
-        <p className="text-gray-400 mb-8">Como você está se sentindo hoje? (Seu feedback é privado)</p>
-        
+        <h3 className="text-xl font-bold mb-2 text-foreground">Diário de Bem-Estar</h3>
+        <p className="text-muted-foreground mb-8">Como você está se sentindo hoje? (Seu feedback é privado)</p>
+
         {enviado ? (
           <div className="bg-green-500/20 text-green-300 p-4 rounded-xl text-center font-medium animate-fade-in">
             ✨ Obrigado por compartilhar! Seu registro foi salvo.
@@ -47,19 +47,19 @@ export function EmojiRating() {
                 onClick={() => handleSelect(opt.value)}
                 className={clsx(
                   "flex flex-col items-center justify-center p-4 rounded-2xl transition-all duration-300 border-2 group",
-                  selected === opt.value 
-                    ? "bg-white/10 border-primary scale-105" 
-                    : "bg-black/20 border-transparent hover:bg-white/5 hover:scale-110 hover:border-gray-700"
+                  selected === opt.value
+                    ? "bg-foreground/10 border-primary scale-105"
+                    : "bg-background/20 border-transparent hover:bg-foreground/5 hover:scale-110 hover:border-border"
                 )}
               >
                 <opt.icon size={40} className={clsx("mb-2 transition-transform group-hover:-translate-y-1", opt.color)} />
-                <span className="text-xs font-medium text-gray-500 group-hover:text-white transition-colors hidden md:block">{opt.label}</span>
+                <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors hidden md:block">{opt.label}</span>
               </button>
             ))}
           </div>
         )}
       </div>
-      
+
       {/* Efeito de fundo decorativo */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
     </div>

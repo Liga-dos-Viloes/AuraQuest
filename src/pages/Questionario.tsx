@@ -41,7 +41,7 @@ export function Questionario() {
     if (t.includes('front-end') || t.includes('react')) return <Monitor size={40} className="text-cyan-400" />;
     if (t.includes('sustentabilidade') || t.includes('green')) return <Leaf size={40} className="text-green-400" />;
     if (t.includes('soft') || t.includes('comunicação')) return <Zap size={40} className="text-yellow-400" />;
-    return <Code2 size={40} className="text-gray-400" />;
+    return <Code2 size={40} className="text-muted-foreground" />;
   };
 
   const toggleOpcao = (idOpcao: number, tipoSelecao: 'SINGLE' | 'MULTIPLE') => {
@@ -85,14 +85,14 @@ export function Questionario() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background text-white">
+      <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
         <Loader2 className="animate-spin text-primary" size={64} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background text-white p-6 flex flex-col items-center">
+    <div className="min-h-screen bg-background text-foreground p-6 flex flex-col items-center">
 
       <div className="max-w-6xl w-full space-y-12 pt-10 pb-40"> {/* Adicionado pb-40 para o conteúdo não ficar escondido atrás da barra */}
         <div className="text-center space-y-4">
@@ -113,7 +113,7 @@ export function Questionario() {
 
             return (
               <div key={pergunta.id} className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-200 text-center">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground text-center">
                   {pergunta.texto}
                 </h3>
 
@@ -128,7 +128,7 @@ export function Questionario() {
                           "relative h-64 rounded-[2rem] border-2 transition-all duration-300 flex flex-col items-center justify-center gap-6 p-6 group hover:-translate-y-2",
                           selecionado
                             ? "bg-surface border-primary shadow-[0_0_40px_rgba(79,70,229,0.3)]"
-                            : "bg-surface/30 border-transparent hover:border-gray-700 hover:bg-surface"
+                            : "bg-surface/30 border-transparent hover:border-border hover:bg-surface"
                         )}
                       >
                         <div className={clsx(
@@ -140,7 +140,7 @@ export function Questionario() {
 
                         <span className={clsx(
                           "font-bold text-xl text-center max-w-[80%]",
-                          selecionado ? "text-white" : "text-gray-400 group-hover:text-gray-200"
+                          selecionado ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
                         )}>
                           {opcao.textoOpcao}
                         </span>
@@ -160,7 +160,7 @@ export function Questionario() {
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 w-full bg-[#0a0b14]/80 backdrop-blur-xl border-t border-white/5 p-6 z-50 flex justify-center shadow-2xl">
+      <div className="fixed bottom-0 left-0 w-full bg-background/80 backdrop-blur-xl border-t border-border p-6 z-50 flex justify-center shadow-2xl">
         <div className="flex flex-col items-center gap-3 w-full max-w-md">
           <button
             onClick={handleSubmit}
@@ -168,14 +168,14 @@ export function Questionario() {
             className={clsx(
               "w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-lg",
               respostas.length > 0
-                ? "bg-white text-black hover:scale-[1.02] hover:shadow-white/20"
-                : "bg-gray-800 text-gray-500 cursor-not-allowed"
+                ? "bg-foreground text-background hover:scale-[1.02] hover:shadow-foreground/20"
+                : "bg-muted text-muted-foreground cursor-not-allowed"
             )}
           >
             {enviando ? <Loader2 className="animate-spin" /> : <>Continuar <ArrowRight strokeWidth={3} /></>}
           </button>
 
-          <button onClick={() => navigate('/dashboard')} className="text-gray-500 hover:text-white text-sm font-medium transition-colors py-2">
+          <button onClick={() => navigate('/dashboard')} className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors py-2">
             Pular esta etapa
           </button>
         </div>
